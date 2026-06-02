@@ -1,0 +1,33 @@
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub/
+pubspec.lock
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-plugins-deps
+
+# Android
+**/android/**/gradle-wrapper.jar
+**/android/**/caches/
+**/android/**/local.properties
+**/android/**/app/**/release/**
+**/android/**/app/**/debug/**
+
+# iOS
+**/ios/**/Pods/
+**/ios/**/Flutter/Flutter.framework
+**/ios/**/Flutter/Flutter.podspec
+**/ios/**/Flutter/Generated.xcconfig
+**/ios/**/Flutter/ephemeral/
+**/ios/**/Runner/GeneratedPluginRegistrant.*
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Misc
+.DS_Store
