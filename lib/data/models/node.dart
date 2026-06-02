@@ -1,4 +1,6 @@
-class Node {
+import '../database/app_database.dart';
+
+class StudyNode {
   final int id;
   final int? parentId;
   final String name;
@@ -10,12 +12,12 @@ class Node {
   final DateTime? completedAt;
   final DateTime? archivedAt;
 
-  Node({
+  StudyNode({
     required this.id,
     this.parentId,
     required this.name,
     this.description,
-    this.status = 'active',
+    this.status = NodeStatus.active,
     required this.createdAt,
     required this.updatedAt,
     this.dueDate,
@@ -23,7 +25,7 @@ class Node {
     this.archivedAt,
   });
 
-  Node copyWith({
+  StudyNode copyWith({
     int? id,
     int? parentId,
     String? name,
@@ -35,7 +37,7 @@ class Node {
     DateTime? completedAt,
     DateTime? archivedAt,
   }) {
-    return Node(
+    return StudyNode(
       id: id ?? this.id,
       parentId: parentId ?? this.parentId,
       name: name ?? this.name,
@@ -48,4 +50,35 @@ class Node {
       archivedAt: archivedAt ?? this.archivedAt,
     );
   }
+
+  bool get isActive => status == NodeStatus.active;
+  bool get isCompleted => status == NodeStatus.completed;
+  bool get isArchived => status == NodeStatus.archived;
+}
+
+extension NodeDataMapper on Node {
+  StudyNode toNode() {
+    return StudyNode(
+      id: id,
+      parentId: parentId,
+      name: name,
+      description: description,
+      status: status,
+      dueDate: dueDate,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      completedAt: completedAt,
+      archivedAt: archivedAt,
+    );
+  }
+
+  bool get isActive => status == NodeStatus.active;
+  bool get isCompleted => status == NodeStatus.completed;
+  bool get isArchived => status == NodeStatus.archived;
+}
+
+class NodeStatus {
+  static const active = 'active';
+  static const completed = 'completed';
+  static const archived = 'archived';
 }
