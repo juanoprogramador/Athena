@@ -6,7 +6,7 @@ Este documento centraliza as fases gerais do projeto, acompanha o progresso de d
 
 - [x] **Fase 1: Fundação** (Flutter, Drift, Riverpod, Migrações)
 - [x] **Fase 2: Estudos Básico** (Árvore hierárquica, CRUD de Nodes, Conclusão de nós)
-- [~] **Fase 3: Estudos Avançado** (Timer, Sessões de estudo, Tarefas e agregações de tempo)
+- [ ] **Fase 3: Estudos Avançado** (Timer, Sessões de estudo, Tarefas e agregações de tempo)
 - [ ] **Fase 4: Sono** (Rotina, estados, registros rápidos e histórico)
 - [ ] **Fase 5: Humor** (Registros de emoção, tags e observações diárias)
 - [ ] **Fase 6: Localização** (Cadastro de lugares, geofence, eventos de entrada/saída)
