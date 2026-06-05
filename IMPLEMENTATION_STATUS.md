@@ -1,53 +1,57 @@
-# Athena Progress Report
+# Athena - Roadmap e Status de Implementação
 
-## Estado atual (feito)
+Este documento centraliza as fases gerais do projeto, acompanha o progresso de desenvolvimento e lista as próximas prioridades.
 
-### Fase 1 — Fundação
-- Projeto Flutter criado e configurado.
-- `flutter_riverpod` integrado para gerenciamento de estado.
-- `go_router` configurado com rota inicial para `StudyScreen`.
-- Drift/SQLite configurado em `lib/data/database/app_database.dart`.
-- Tabela `nodes` criada com campos básicos: `id`, `parent_id`, `name`, `description`, `status`, `due_date`, `created_at`, `updated_at`, `completed_at`, `archived_at`.
-- Tabela `study_sessions` adicionada ao banco, com suporte a `nodeId`, `startedAt`, `endedAt`, `notes` e `createdAt`.
-- Código gerado do Drift atualizado com `dart run build_runner build`.
+## Roteiro de Implementação (Roadmap)
 
-### Fase 2 — Estudos
-- Modelo de domínio `StudyNode` implementado em `lib/data/models/node.dart`.
-- Repositório de nós (`NodeRepository`) implementado em `lib/data/repositories/node_repository.dart`.
-- Criar nós com hierarquia funcionou.
-- Edição, conclusão, restauração e arquivamento de nós implementados.
-- Tela de estudos atualizada em `lib/features/study/study_screen.dart` para exibir a árvore de nós.
-- Ações de nó por `long press` implementadas.
-- Repositório de sessões de estudo (`StudyRepository`) criado em `lib/data/repositories/study_repository.dart`.
-- Tela de estudos passou a suportar sessão ativa com timer dinâmico.
-- Sessões podem ser iniciadas e interrompidas.
-- `flutter analyze` confirma que não há issues no código atual.
-
-## O que falta fazer
-
-### Prioritário
-- Registrar histórico de sessões por nó em uma interface dedicada.
-- Permitir inserir notas ou tipo de estudo ao finalizar a sessão.
-- Exibir o nome do nó ativo na sessão em vez de apenas `nodeId`.
-- Adicionar suporte a múltiplas sessões por nó e relatório de tempo acumulado.
-
-### Médio prazo
-- Implementar subtarefas/tarefas associadas a nós.
-- Adicionar filtros de `active`, `completed` e `archived` na UI com seções claras.
-- Adicionar campo de prazo (`due_date`) e visualização de ítens com prazo.
-- Criar uma tela de estatísticas com agregações hierárquicas de tempo.
-
-### Fase 3 e seguintes
-- Implementar telas e modelos para sono, humor e localização.
-- Adicionar exportação de dados (Excel, CSV, backup SQLite).
-- Planejar migrações de banco para futuras versões.
-- Melhorar a UX com animações, busca, e organização arrastável da árvore.
-
-## Notas técnicas
-- A arquitetura atual está organizada em `lib/core`, `lib/data`, `lib/features`, `lib/routes`.
-- O banco é local e preparado para evoluir com novas tabelas e migrações.
-- O trabalho atual já atende ao fluxo básico de criação e gestão de nós e ao timer de estudo.
+- [x] **Fase 1: Fundação** (Flutter, Drift, Riverpod, Migrações)
+- [x] **Fase 2: Estudos Básico** (Árvore hierárquica, CRUD de Nodes, Conclusão de nós)
+- [~] **Fase 3: Estudos Avançado** (Timer, Sessões de estudo, Tarefas e agregações de tempo)
+- [ ] **Fase 4: Sono** (Rotina, estados, registros rápidos e histórico)
+- [ ] **Fase 5: Humor** (Registros de emoção, tags e observações diárias)
+- [ ] **Fase 6: Localização** (Cadastro de lugares, geofence, eventos de entrada/saída)
+- [ ] **Fase 7: Agenda** (Prazos, itens futuros e atrasados, visão cronológica)
+- [ ] **Fase 8: Estatísticas** (Gráficos, dashboards e agregações hierárquicas)
+- [ ] **Fase 9: Exportação** (Geração de relatórios Excel, CSV e Backup local SQLite completo)
 
 ---
 
-Arquivo gerado automaticamente como registro de progresso em 2026-06-02.
+## Estado Atual (O que já foi feito)
+
+### Infraestrutura
+
+- Projeto Flutter criado e estrutura base configurada (`lib/core`, `lib/features`, etc).
+- `flutter_riverpod` integrado de forma limpa.
+- Roteamento com `go_router` configurado (rota `/` apontando para `StudyScreen`).
+- Persistência configurada com `Drift` no SQLite (`lib/data/database/app_database.dart`).
+- Tabelas `nodes` e `study_sessions` modeladas e geradas.
+
+### Funcionalidades e UI
+
+- **Nodes**: Modelo de domínio implementado e testado.
+- **NodeRepository**: Operações completas de banco isoladas da UI.
+- Interface renderizando a árvore de nós corretamente e suportando hierarquia infinita.
+- Edição, deleção (soft delete), conclusão e restauração em pleno funcionamento via pressões longas.
+- **StudySessions**: Timer dinâmico funcional em `StudyScreen`. É possível focar em um nó e contar o tempo.
+- Análise de código limpa (`flutter analyze` passando sem issues no último checklist).
+
+---
+
+## Próximos Passos (Backlog Ativo)
+
+### Prioridade Alta (Finalizar Fase 3)
+
+1. **Histórico de Sessões**: Exibir as sessões concluídas e seu tempo acumulado em cada nó.
+2. **UX do Timer**: Permitir adicionar uma nota (observação) ao encerrar o cronômetro, além de exibir o título do nó que está sendo estudado (atualmente apenas salva no banco).
+3. **Tarefas (Checklists)**: Implementar tabelas de `Tasks` para permitir dividir um "Nó" em pequenos checkboxes concluíveis.
+
+### Prioridade Média
+
+- Adicionar abas/filtros visíveis na tela de Estudos para separar nós `Ativos`, `Concluídos` e `Arquivados`.
+- Implementar edição de `due_date` (Prazo) nos nós.
+- Desenvolver os gráficos (Fase 8) pelo menos para a parte de estudos.
+
+### Longo Prazo
+
+- Começar a desenhar os fluxos de Sono e Humor, estendendo o banco de dados via migrations sem quebrar a estrutura existente.
+- Polimento visual da UI (suporte nativo a dark mode refinado, drag and drop da árvore de estudos, micro-animações).
